@@ -56,6 +56,9 @@ TrainingSet TestGenerator::SplitTest(const MarkedData& sample_data,
         unsigned int session_id = session->session_id;
         unsigned int hash = session_id * k + b;
         double goodness = (double)hash / (1LL << 32);
+        if (session->day_id == 23 || session->day_id == 24 || session->day_id == 25) {
+            goodness = 1.0;
+        } else goodness = 0.0;
         if (goodness < train_ratio) {
             out_train.Print(*session);
         } else {

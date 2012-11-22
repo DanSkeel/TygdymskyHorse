@@ -23,7 +23,7 @@ void TrainingSet::Dispose() {
     test_results_data.Dispose();
 }
 
-bool Session::HasSwitches() {
+bool Session::HasSwitches() const {
     for (size_t i = 0; i < session_log.size(); ++i) {
         if (session_log[i]->record_type == 'S') {
             return true;

@@ -7,7 +7,6 @@
 //
 
 #include <cassert>
-#include <sstream>
 #include "input_reader.h"
 #include "logger.h"
 #include "utils.h"
@@ -26,9 +25,7 @@ void InputReader::GetNextLine() {
     }
     chars_read += l;
     while (file_size * next_log < chars_read) {
-        std::ostringstream message;
-        message << "Read " << (double)chars_read * 100.0 / file_size << "%";
-        Logger::Info(message.str());
+        Logger::Info << "Read " << (double)chars_read * 100 / file_size << "%\n";
         next_log += LOG_EVERY;
     }
 }
@@ -40,7 +37,7 @@ InputReader::InputReader(const MarkedData& data) {
     chars_read = 0;
     next_log = LOG_EVERY;
     GetNextLine();
-    Logger::Info("Reading " + data.file_name);
+    Logger::Info << "Reading " << data.file_name << "\n";
 }
 
 InputReader::InputReader(const UnmarkedData& data) {
@@ -50,7 +47,7 @@ InputReader::InputReader(const UnmarkedData& data) {
     chars_read = 0;
     next_log = LOG_EVERY;
     GetNextLine();
-    Logger::Info("Reading " + data.file_name);
+    Logger::Info << "Reading " << data.file_name << "\n";
 }
 
 int InputReader::GetNextInt() {

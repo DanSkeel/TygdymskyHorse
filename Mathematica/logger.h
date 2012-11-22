@@ -13,33 +13,41 @@
 #include <string>
 using std::string;
 
+class LoggerWithLevel;
+
 class Logger {
 private:
     static int LOG_LEVEL;
 public:
     static void SetLogLevel(int new_log_level);
-    static void Log(const string& message, int log_level);
+    static int GetLogLevel();
     
-    static void Debug(const string& message) {
-        Log(message, 0);
-    }
+    static LoggerWithLevel Debug;
+    static LoggerWithLevel Info;
+    static LoggerWithLevel Warning;
+    static LoggerWithLevel Error;
+    static LoggerWithLevel Fatal;
     
-    static void Info(const string& message) {
-        Log(message, 20);
-    }
+    static LoggerWithLevel GetLogger(int level);
     
-    static void Warning(const string& message) {
-        Log(message, 40);
-    }
+};
+
+class LoggerWithLevel {
+private:
+    int level = 0;
+public:
+    LoggerWithLevel(int level) : level(level) { }
     
-    static void Error(const string& message) {
-        Log(message, 60);
+    template<class T>
+    friend LoggerWithLevel operator << (const LoggerWithLevel &logger,
+                                        const T& message) {
+        if (Logger::GetLogLevel() <= logger.level) {
+            std::cerr << message;
+            std::cerr.flush();
+        }
+        return logger;
     }
-    
-    static void Fatal(const string& message) {
-        Log(message, 80);
-        exit(1);
-    }
+            
 };
 
 #endif /* defined(__Mathematica__logger__) */

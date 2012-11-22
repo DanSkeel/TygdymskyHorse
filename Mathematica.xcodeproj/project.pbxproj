@@ -14,6 +14,7 @@
 		677C6730165BFAF100D64250 /* naive_classifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 677C672E165BFAF100D64250 /* naive_classifier.cpp */; };
 		677C6736165C01D600D64250 /* quality_tester.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 677C6734165C01D600D64250 /* quality_tester.cpp */; };
 		677C6739165C0BB100D64250 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 677C6737165C0BB100D64250 /* logger.cpp */; };
+		677C673C165E7F7400D64250 /* classifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 677C673A165E7F7400D64250 /* classifier.cpp */; };
 		67823EAC165A7F9F00A6593A /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67823EAA165A7F9F00A6593A /* utils.cpp */; };
 		67823EAF165A817900A6593A /* test_generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67823EAD165A817900A6593A /* test_generator.cpp */; };
 		67823EB2165A86AD00A6593A /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67823EB0165A86AD00A6593A /* data.cpp */; };
@@ -40,7 +41,6 @@
 		677C6726165BCB5000D64250 /* input_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input_reader.h; sourceTree = "<group>"; };
 		677C6729165BDB7F00D64250 /* output_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = output_writer.cpp; sourceTree = "<group>"; };
 		677C672A165BDB7F00D64250 /* output_writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = output_writer.h; sourceTree = "<group>"; };
-		677C672C165BF7AC00D64250 /* classifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classifier.h; sourceTree = "<group>"; };
 		677C672D165BF98D00D64250 /* pointwise_classifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pointwise_classifier.h; sourceTree = "<group>"; };
 		677C672E165BFAF100D64250 /* naive_classifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = naive_classifier.cpp; sourceTree = "<group>"; };
 		677C672F165BFAF100D64250 /* naive_classifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = naive_classifier.h; sourceTree = "<group>"; };
@@ -48,6 +48,8 @@
 		677C6735165C01D600D64250 /* quality_tester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quality_tester.h; sourceTree = "<group>"; };
 		677C6737165C0BB100D64250 /* logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		677C6738165C0BB100D64250 /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logger.h; sourceTree = "<group>"; };
+		677C673A165E7F7400D64250 /* classifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = classifier.cpp; sourceTree = "<group>"; };
+		677C673B165E7F7400D64250 /* classifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classifier.h; sourceTree = "<group>"; };
 		67823EAA165A7F9F00A6593A /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
 		67823EAB165A7F9F00A6593A /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		67823EAD165A817900A6593A /* test_generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_generator.cpp; sourceTree = "<group>"; };
@@ -93,7 +95,8 @@
 				677C6737165C0BB100D64250 /* logger.cpp */,
 				677C6738165C0BB100D64250 /* logger.h */,
 				677C6726165BCB5000D64250 /* input_reader.h */,
-				677C672C165BF7AC00D64250 /* classifier.h */,
+				677C673A165E7F7400D64250 /* classifier.cpp */,
+				677C673B165E7F7400D64250 /* classifier.h */,
 				677C6734165C01D600D64250 /* quality_tester.cpp */,
 				677C6735165C01D600D64250 /* quality_tester.h */,
 				677C672D165BF98D00D64250 /* pointwise_classifier.h */,
@@ -170,6 +173,7 @@
 				677C6730165BFAF100D64250 /* naive_classifier.cpp in Sources */,
 				677C6736165C01D600D64250 /* quality_tester.cpp in Sources */,
 				677C6739165C0BB100D64250 /* logger.cpp in Sources */,
+				677C673C165E7F7400D64250 /* classifier.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

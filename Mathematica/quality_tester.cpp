@@ -33,31 +33,15 @@ double QualityTester::GetScore(vector<int> received_results, const vector<int>& 
 }
 
 double QualityTester::Test(double train_ratio) {
-    Logger::Info("Splitting data");
+    Logger::Info << "Splitting data\n";
     TrainingSet training_set = TestGenerator::SplitTest(data, train_ratio);
-    Logger::Info("Training classifier");
-    classifier->Reset();
-    InputReader in(training_set.train_data);
-    while (in.HasNextSession()) {
-        Session* session = in.GetNextSession();
-        classifier->AddTrainingSession(*session);
-        delete session;
-    }
-    Logger::Info("Finishing training");
-    classifier->FinishTraining();
-    Logger::Info("Loading test data");
-    in = InputReader(training_set.test_data);
-    while (in.HasNextSession()) {
-        Session* session = in.GetNextSession();
-        classifier->AddTestSession(*session);
-        delete session;
-    }
-    Logger::Info("Getting classification results");
-    vector<int> received_results = classifier->FinishTesting();
+    classifier->TrainOn(training_set.train_data);
+    Logger::Info << "Loading test data\n";
+    vector<int> received_results = classifier->TestOn(training_set.test_data);
 
-    Logger::Info("Getting expected results");
+    Logger::Info << "Getting expected results\n";
     vector<int> sessions_with_switches;
-    in = InputReader(training_set.test_results_data);
+    InputReader in = InputReader(training_set.test_results_data);
     while (in.HasNextSession()) {
         Session* session = in.GetNextSession();
         if (session->HasSwitches()) {
@@ -66,7 +50,7 @@ double QualityTester::Test(double train_ratio) {
         delete session;
     }
     sort(sessions_with_switches.begin(), sessions_with_switches.end());
-    Logger::Info("Getting final score");
+    Logger::Info << "Getting final score\n";
     double score = GetScore(received_results, sessions_with_switches);
     training_set.Dispose();
     return score;

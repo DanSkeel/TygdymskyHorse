@@ -78,7 +78,7 @@ struct Session {
     char switch_type;
     vector<LogEntry*> session_log;
     
-    bool HasSwitches();
+    bool HasSwitches() const;
     ~Session();
 };
 

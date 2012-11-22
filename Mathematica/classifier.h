@@ -2,19 +2,19 @@
 //  classifier.h
 //  Mathematica
 //
-//  Created by Akim on 11/20/12.
+//  Created by Akim on 11/22/12.
 //  Copyright (c) 2012 Akim. All rights reserved.
 //
 
-#ifndef Mathematica_classifier_h
-#define Mathematica_classifier_h
+#ifndef __Mathematica__classifier__
+#define __Mathematica__classifier__
 
 #include <vector>
 #include "data.h"
 using std::vector;
 
 class Classifier {
-public:
+private:
     // Инициализирует классификатор. Гарантируется, что эта функция будет вызвана
     // до начала подачи данных.
     virtual void Reset() = 0;
@@ -33,8 +33,15 @@ public:
     // Получение результатов работы классификатора.
     virtual vector<int> FinishTesting() = 0;
     
+    
+public:
+    Classifier() { }
+    void TrainOn(const MarkedData& data);
+    vector<int> TestOn(const UnmarkedData& data);
+
     // Удаление классификатора.
     virtual ~Classifier() { }
+
 };
 
-#endif
+#endif /* defined(__Mathematica__classifier__) */
