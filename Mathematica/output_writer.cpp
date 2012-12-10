@@ -10,13 +10,19 @@
 #include "output_writer.h"
 
 OutputWriter::OutputWriter(const MarkedData& data) {
+    file_name = data.file_name;
     fout = fopen(data.file_name.c_str(), "wb");
     is_marked = true;
 }
 
 OutputWriter::OutputWriter(const UnmarkedData& data) {
+    file_name = data.file_name;
     fout = fopen(data.file_name.c_str(), "wb");
     is_marked = false;
+}
+
+string OutputWriter::GetFileName() const {
+    return file_name;
 }
 
 void OutputWriter::Print(const Session &session) {

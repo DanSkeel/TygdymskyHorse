@@ -18,7 +18,10 @@ using std::vector;
 struct FileData {
     string file_name;
     FileData(const string& file_name) {
-        this->file_name = "/Users/akim/Desktop/Mathematica/Mathematica/dataset/" + file_name;
+        this->file_name = file_name;
+        if (this->file_name[0] != '/') {
+            this->file_name = "/Users/akim/Desktop/Mathematica/Mathematica/dataset/" + this->file_name;
+        }
     }
     void Dispose();
 };

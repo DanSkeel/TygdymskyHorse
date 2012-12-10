@@ -9,10 +9,10 @@
 #include <algorithm>
 #include <vector>
 #include "data.h"
-#include "input_reader.h"
 #include "logger.h"
-#include "test_generator.h"
+#include "plain_input_reader.h"
 #include "quality_tester.h"
+#include "splitter_input_reader.h"
 using std::binary_search;
 using std::cerr;
 using std::endl;
@@ -32,26 +32,18 @@ double QualityTester::GetScore(vector<int> received_results, const vector<int>& 
     return ((double)num_inversions) / num_pairs;
 }
 
-double QualityTester::Test(double train_ratio) {
+double QualityTester::Test(int train_days) {
+    SplitterInputReader in(data, train_days);
     Logger::Info << "Splitting data\n";
-    TrainingSet training_set = TestGenerator::SplitTest(data, train_ratio);
-    classifier->TrainOn(training_set.train_data);
+    classifier->TrainOn(&in);
     Logger::Info << "Loading test data\n";
-    vector<int> received_results = classifier->TestOn(training_set.test_data);
+    PlainInputReader test_input = in.GetTestInput();
+    vector<int> received_results = classifier->TestOn(&test_input);
 
     Logger::Info << "Getting expected results\n";
-    vector<int> sessions_with_switches;
-    InputReader in = InputReader(training_set.test_results_data);
-    while (in.HasNextSession()) {
-        Session* session = in.GetNextSession();
-        if (session->HasSwitches()) {
-            sessions_with_switches.push_back(session->session_id);
-        }
-        delete session;
-    }
+    vector<int> sessions_with_switches = in.GetExpectedSessionsWithSwitches();
     sort(sessions_with_switches.begin(), sessions_with_switches.end());
     Logger::Info << "Getting final score\n";
     double score = GetScore(received_results, sessions_with_switches);
-    training_set.Dispose();
     return score;
 }

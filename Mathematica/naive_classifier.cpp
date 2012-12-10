@@ -11,6 +11,16 @@
 #include "naive_classifier.h"
 #include "utils.h"
 
+NaiveClassifier::UserStats::UserStats() :
+    num_sessions(), num_sessions_with_switches(0) { }
+
+void NaiveClassifier::UserStats::AddSession(bool has_switch) {
+    ++num_sessions;
+    if (has_switch) {
+        ++num_sessions_with_switches;
+    }
+}
+
 void NaiveClassifier::Reset() {
     user_stats.clear();
     total_sessions = total_sessions_with_switches = 0;
@@ -19,30 +29,19 @@ void NaiveClassifier::Reset() {
 void NaiveClassifier::AddTrainingSession(const Session &session) {
     ++total_sessions;
     int user_id = session.user_id;
-    pair<int, int> res = user_stats[user_id];
-    ++res.second;
-    if (session.HasSwitches()) {
-        ++total_sessions_with_switches;
-        ++res.first;
-    }
-    user_stats[user_id] = res;
+    UserStats stats_for_current_user = user_stats[user_id];
+    stats_for_current_user.AddSession(session.HasSwitches());
+    user_stats[user_id] = stats_for_current_user;
 }
 
 void NaiveClassifier::FinishTraining() {
-    map<int, int> user_counts;
-    for (map<int, pair<int, int> >::iterator tmp = user_stats.begin(); tmp != user_stats.end(); ++tmp) {
-        ++user_counts[tmp->second.second];
-    }
-    for (map<int, int>::iterator tmp = user_counts.begin(); tmp != user_counts.end(); ++tmp) {
-        Logger::Info << tmp->first << " - " << tmp->second << "\n";
-    }
 }
 
 double NaiveClassifier::GetScore(const Session &session) {
-    pair<int, int> stats = user_stats[session.user_id];
-    if (stats.first == 0) {
-        return 1;//(total_sessions_with_switches + 0.0) / total_sessions;
+    UserStats stats = user_stats[session.user_id];
+    if (stats.GetNumSessions() == 0) {
+        return 0;
     } else {
-        return (stats.first + 0.0) / stats.second;
+        return ((double)stats.GetNumSessionsWithSwitches()) / stats.GetNumSessions();
     }
 }

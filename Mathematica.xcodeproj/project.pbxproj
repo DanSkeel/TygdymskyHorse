@@ -16,8 +16,9 @@
 		677C6739165C0BB100D64250 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 677C6737165C0BB100D64250 /* logger.cpp */; };
 		677C673C165E7F7400D64250 /* classifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 677C673A165E7F7400D64250 /* classifier.cpp */; };
 		67823EAC165A7F9F00A6593A /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67823EAA165A7F9F00A6593A /* utils.cpp */; };
-		67823EAF165A817900A6593A /* test_generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67823EAD165A817900A6593A /* test_generator.cpp */; };
 		67823EB2165A86AD00A6593A /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67823EB0165A86AD00A6593A /* data.cpp */; };
+		67BED5C81675FEF5008B8328 /* plain_input_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67BED5C61675FEF5008B8328 /* plain_input_reader.cpp */; };
+		67BED5CC167601B9008B8328 /* splitter_input_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67BED5CA167601B9008B8328 /* splitter_input_reader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,10 +53,12 @@
 		677C673B165E7F7400D64250 /* classifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classifier.h; sourceTree = "<group>"; };
 		67823EAA165A7F9F00A6593A /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
 		67823EAB165A7F9F00A6593A /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
-		67823EAD165A817900A6593A /* test_generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_generator.cpp; sourceTree = "<group>"; };
-		67823EAE165A817900A6593A /* test_generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test_generator.h; sourceTree = "<group>"; };
 		67823EB0165A86AD00A6593A /* data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data.cpp; sourceTree = "<group>"; };
 		67823EB1165A86AD00A6593A /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
+		67BED5C61675FEF5008B8328 /* plain_input_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = plain_input_reader.cpp; sourceTree = "<group>"; };
+		67BED5C71675FEF5008B8328 /* plain_input_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plain_input_reader.h; sourceTree = "<group>"; };
+		67BED5CA167601B9008B8328 /* splitter_input_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = splitter_input_reader.cpp; sourceTree = "<group>"; };
+		67BED5CB167601B9008B8328 /* splitter_input_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = splitter_input_reader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,10 @@
 				677C6737165C0BB100D64250 /* logger.cpp */,
 				677C6738165C0BB100D64250 /* logger.h */,
 				677C6726165BCB5000D64250 /* input_reader.h */,
+				67BED5CA167601B9008B8328 /* splitter_input_reader.cpp */,
+				67BED5CB167601B9008B8328 /* splitter_input_reader.h */,
+				67BED5C61675FEF5008B8328 /* plain_input_reader.cpp */,
+				67BED5C71675FEF5008B8328 /* plain_input_reader.h */,
 				677C673A165E7F7400D64250 /* classifier.cpp */,
 				677C673B165E7F7400D64250 /* classifier.h */,
 				677C6734165C01D600D64250 /* quality_tester.cpp */,
@@ -102,10 +109,8 @@
 				677C672D165BF98D00D64250 /* pointwise_classifier.h */,
 				677C672E165BFAF100D64250 /* naive_classifier.cpp */,
 				677C672F165BFAF100D64250 /* naive_classifier.h */,
-				67823EAD165A817900A6593A /* test_generator.cpp */,
 				677C6729165BDB7F00D64250 /* output_writer.cpp */,
 				677C672A165BDB7F00D64250 /* output_writer.h */,
-				67823EAE165A817900A6593A /* test_generator.h */,
 				67823EAA165A7F9F00A6593A /* utils.cpp */,
 				67823EAB165A7F9F00A6593A /* utils.h */,
 				67242122165A697900FE3F45 /* Mathematica.1 */,
@@ -166,7 +171,6 @@
 			files = (
 				67242121165A697900FE3F45 /* main.cpp in Sources */,
 				67823EAC165A7F9F00A6593A /* utils.cpp in Sources */,
-				67823EAF165A817900A6593A /* test_generator.cpp in Sources */,
 				67823EB2165A86AD00A6593A /* data.cpp in Sources */,
 				677C6727165BCB5000D64250 /* input_reader.cpp in Sources */,
 				677C672B165BDB7F00D64250 /* output_writer.cpp in Sources */,
@@ -174,6 +178,8 @@
 				677C6736165C01D600D64250 /* quality_tester.cpp in Sources */,
 				677C6739165C0BB100D64250 /* logger.cpp in Sources */,
 				677C673C165E7F7400D64250 /* classifier.cpp in Sources */,
+				67BED5C81675FEF5008B8328 /* plain_input_reader.cpp in Sources */,
+				67BED5CC167601B9008B8328 /* splitter_input_reader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

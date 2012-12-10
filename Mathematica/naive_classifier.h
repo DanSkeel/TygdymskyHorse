@@ -17,8 +17,19 @@ using std::pair;
 
 class NaiveClassifier : public PointwiseClassifier {
 private:
+    class UserStats {
+    private:
+        int num_sessions, num_sessions_with_switches;
+    public:
+        UserStats();
+        void AddSession(bool has_switch);
+        int GetNumSessions() { return num_sessions; }
+        int GetNumSessionsWithSwitches() { return num_sessions_with_switches; }
+    };
+    
     int total_sessions, total_sessions_with_switches;
-    map<int, pair<int, int> > user_stats;
+    // maps user
+    map<int, UserStats> user_stats;
 public:
     
     virtual void Reset();

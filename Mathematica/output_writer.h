@@ -17,9 +17,11 @@ class OutputWriter {
 private:
     FILE* fout;
     bool is_marked;
+    string file_name;
 public:
     OutputWriter(const MarkedData& data);
     OutputWriter(const UnmarkedData& data);
+    string GetFileName() const;
     void Print(const Session& session);
     void Close();
     

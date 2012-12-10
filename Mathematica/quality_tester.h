@@ -22,7 +22,7 @@ public:
     QualityTester(const MarkedData &data, Classifier* classifier) :
     data(data), classifier(classifier) { }
     
-    double Test(double train_ratio);
+    double Test(int train_days);
 };
 
 #endif /* defined(__Mathematica__quality_tester__) */

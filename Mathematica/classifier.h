@@ -11,6 +11,7 @@
 
 #include <vector>
 #include "data.h"
+#include "input_reader.h"
 using std::vector;
 
 class Classifier {
@@ -36,8 +37,8 @@ private:
     
 public:
     Classifier() { }
-    void TrainOn(const MarkedData& data);
-    vector<int> TestOn(const UnmarkedData& data);
+    void TrainOn(InputReader *data);
+    vector<int> TestOn(InputReader *data);
 
     // Удаление классификатора.
     virtual ~Classifier() { }

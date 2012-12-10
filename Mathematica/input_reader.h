@@ -15,35 +15,10 @@
 using std::ifstream;
 
 class InputReader {
-private:
-    static const int MAX_LINE_LEN = 1000;
-    static const double LOG_EVERY; // 10%
-    
-    FILE* fin;
-    long long file_size;
-    long long chars_read;
-    double next_log;
-    
-    bool is_marked;
-    bool has_next;
-    
-    char next_line[MAX_LINE_LEN];
-    int pos_in_line;
-    
-    InputReader();
-    
-    void GetNextLine();
-    int GetNextInt();
-    char GetNextChar();
-    bool HasNextTokenInString();
 public:
-    InputReader(const MarkedData& data);
-    InputReader(const UnmarkedData& data);
-    Session* GetNextSession();
-    
-    bool HasNextSession() {
-        return has_next;
-    }
+    virtual bool HasNextSession() const = 0;
+    virtual Session* GetNextSession() = 0;
+    virtual ~InputReader() { }
 };
 
 #endif /* defined(__Mathematica__input_reader__) */

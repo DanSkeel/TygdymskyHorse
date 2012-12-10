@@ -10,12 +10,11 @@
 #include "input_reader.h"
 #include "logger.h"
 
-void Classifier::TrainOn(const MarkedData &data) {
+void Classifier::TrainOn(InputReader *in) {
     Logger::Info << "Training classifier\n";
     Reset();
-    InputReader in(data);
-    while (in.HasNextSession()) {
-        Session* session = in.GetNextSession();
+    while (in->HasNextSession()) {
+        Session* session = in->GetNextSession();
         AddTrainingSession(*session);
         delete session;
     }
@@ -23,10 +22,9 @@ void Classifier::TrainOn(const MarkedData &data) {
     FinishTraining();
 }
 
-vector<int> Classifier::TestOn(const UnmarkedData& data) {
-    InputReader in = InputReader(data);
-    while (in.HasNextSession()) {
-        Session* session = in.GetNextSession();
+vector<int> Classifier::TestOn(InputReader *in) {
+    while (in->HasNextSession()) {
+        Session* session = in->GetNextSession();
         AddTestSession(*session);
         delete session;
     }
